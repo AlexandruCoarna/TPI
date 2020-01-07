@@ -10,6 +10,7 @@ class Database
     private array $drivers = [
         "mysql" => Mysql::class
     ];
+
     private ?PDO $connection = null;
 
     public function __construct() {
@@ -20,7 +21,7 @@ class Database
         $driver = '';
         $connections = [];
 
-        require "{$_SERVER['DOCUMENT_ROOT']}/config/database.php";
+        require ROOT . "/config/database.php";
 
         $this->connection = $this->drivers[$driver]::connect($connections[$driver]);
     }

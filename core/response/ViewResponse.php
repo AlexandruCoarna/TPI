@@ -1,16 +1,16 @@
-<?php
+<?php /** @noinspection PhpIncludeInspection */
 
 namespace Core\Response;
+
+use Error;
 
 class ViewResponse
 {
     public function __construct($path, array $args = []) {
-        $root = $_SERVER["DOCUMENT_ROOT"];
-        $fullPath = "{$root}/public/views/{$path}.view.php";
+        $fullPath = ROOT . "/public/views/{$path}.view.php";
 
         if (!file_exists($fullPath)) {
-            echo "View does not exists";
-            return 1;
+            throw new Error("The '{$path}' view doesn't exist");
         }
 
         extract($args);
