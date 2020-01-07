@@ -13,6 +13,7 @@ Router::get("/", function () {
 });
 
 Router::get("/test", function () {
+    Container::get("test")->t();
     return new ViewResponse("test");
 });
 
