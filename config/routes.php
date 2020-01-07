@@ -1,18 +1,17 @@
 <?php
-/** @var Router $router */
 
-use Core\Response\{ViewResponse, Response, JsonResponse};
 use Core\Router;
+use Core\Response\{ViewResponse, Response, JsonResponse};
 
-$router->get("/", function () {
+Router::get("/", function () {
     return new Response("This is Homepage");
 });
 
-$router->get("/test", function () {
+Router::get("/test", function () {
     return new ViewResponse("test");
 });
 
-$router->get("/something", function () {
+Router::get("/something", function () {
     return new JsonResponse(["message" => "this is json"]);
 });
 
