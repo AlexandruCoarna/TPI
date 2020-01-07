@@ -17,7 +17,7 @@ class Kernel
     }
 
     private function setContainer() {
-        $container = new Container();
+        Container::init();
     }
 
     private function route() {
