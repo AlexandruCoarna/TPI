@@ -5,22 +5,12 @@ namespace Core;
 class Kernel
 {
     public function __construct() {
-
+        $this->run();
     }
 
     private function run() {
-
-    }
-
-    private function makeConnection() {
-
-    }
-
-    private function setContainer() {
+        Container::register("database", new Database());
         Container::init();
-    }
-
-    private function route() {
         Router::init()->handle(new Request());
     }
 }

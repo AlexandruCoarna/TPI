@@ -1,10 +1,15 @@
 <?php
 
-use Core\Router;
-use Core\Response\{ViewResponse, Response, JsonResponse};
+use Core\{Container, Router};
+use Core\Response\{JsonResponse, ViewResponse};
 
 Router::get("/", function () {
-    return new Response("This is Homepage");
+    /** @var PDO $connection */
+    $connection = Container::get("database")->getConnection();
+    $statement = $connection->prepare("SELECT * from test");
+    $statement->execute();
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return new JsonResponse($result);
 });
 
 Router::get("/test", function () {

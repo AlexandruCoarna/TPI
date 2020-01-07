@@ -5,5 +5,8 @@
       "Core\\": "core/"
     }
   },
-  "require": {}
+  "require": {
+    "ext-json": "*",
+    "ext-pdo": "*"
+  }
 }

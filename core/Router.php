@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpIncludeInspection */
 
 namespace Core;
 
@@ -11,19 +11,17 @@ class Router
         "POST" => []
     ];
 
-    private static Router $instance;
+    private static ?Router $instance = null;
 
     private function __construct($routes) {
-
+        $this->routes_ = $routes;
     }
 
-    /** @noinspection PhpIncludeInspection */
     public static function init(): Router {
         require_once "{$_SERVER['DOCUMENT_ROOT']}/config/routes.php";
 
         if (!self::$instance) {
-            self::$instance = new self(self::$routes);
-            return self::$instance;
+            return self::$instance = new self(self::$routes);
         }
 
         self::$instance->alterRoutes(self::$routes);
