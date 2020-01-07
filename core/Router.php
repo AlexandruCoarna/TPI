@@ -9,10 +9,11 @@ class Router
         "POST" => []
     ];
 
+    /** @noinspection PhpIncludeInspection */
     public static function init() {
         $router = new self;
 
-        require_once "{$_SERVER['DOCUMENT_ROOT']}/routes.php";
+        require_once "{$_SERVER['DOCUMENT_ROOT']}/config/routes.php";
 
         return $router;
     }
