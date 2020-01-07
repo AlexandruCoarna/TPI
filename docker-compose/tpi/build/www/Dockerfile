@@ -1,0 +1,16 @@
+FROM php:7.4-apache
+RUN docker-php-ext-install pdo pdo_mysql
+RUN apt-get update && apt-get install vim -y
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN a2enmod rewrite
+RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+
+RUN chgrp -R www-data /var/www
+RUN find /var/www -type d -exec chmod 775 {} +
+RUN find /var/www -type f -exec chmod 664 {} +
+
+EXPOSE 80
+
+CMD ["/usr/sbin/apache2ctl","-DFOREGROUND"]
