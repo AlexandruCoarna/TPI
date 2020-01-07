@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "system",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "outFile": "./public/js/main.js",
+    "sourceMap": true,
+    "target": "esnext"
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "./node_modules",
+    "**/*.spec.ts",
+    "./vendor"
+  ]
+}

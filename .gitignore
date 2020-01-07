@@ -4,3 +4,7 @@
 /.idea
 vendor
 /.idea/
+/node_modules
+/node_modules/
+/public/js
+/public/js/
