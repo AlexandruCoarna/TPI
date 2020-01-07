@@ -6,14 +6,12 @@ use Error;
 
 class Router
 {
-    private array $routes_;
-
     private static array $routes = [
         "GET" => [],
         "POST" => []
     ];
-
     private static ?Router $instance = null;
+    private array $routes_;
 
     private function __construct($routes) {
         $this->routes_ = $routes;
@@ -31,18 +29,9 @@ class Router
         return !self::$instance ? self::$instance = new self(self::$routes) : self::$instance;
     }
 
-    public function handle($request): Router {
-        if (!key_exists($request->method, $this->routes_)) {
-            throw new Error("'{$request->method}' is not supported");
-        }
-
-        if (!key_exists($request->url, $this->routes_[$request->method])) {
-            header("Location: http://localhost:8000");
-        }
-
-        $this->routes_[$request->method][$request->url]($request);
-
-        return $this;
+    public static function get($url, $method): void {
+        self::checkRouteExists($url, "GET");
+        self::$routes["GET"][$url] = $method;
     }
 
     private static function checkRouteExists($url, $requestMethod) {
@@ -51,13 +40,20 @@ class Router
         }
     }
 
-    public static function get($url, $method): void {
-        self::checkRouteExists($url, "GET");
-        self::$routes["GET"][$url] = $method;
-    }
-
     public static function post($url, $method): void {
         self::checkRouteExists($url, "POST");
         self::$routes["POST"][$url] = $method;
+    }
+
+    public function handle($request): void {
+        if (!key_exists($request->method, $this->routes_)) {
+            throw new Error("'{$request->method}' method is not supported");
+        }
+
+        if (!key_exists($request->url, $this->routes_[$request->method])) {
+            header("Location: http://localhost:8000");
+        }
+
+        $this->routes_[$request->method][$request->url]($request);
     }
 }

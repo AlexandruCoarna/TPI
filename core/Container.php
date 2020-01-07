@@ -23,7 +23,7 @@ class Container
             throw new Error("service.php must be in config directory, be sure you declare all your services in there!");
         }
 
-        require $path;
+        require_once $path;
 
         return !self::$instance ? self::$instance = new self(self::$container) : self::$instance;
     }

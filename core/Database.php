@@ -21,7 +21,7 @@ class Database
         $driver = '';
         $connections = [];
 
-        require ROOT . "/config/database.php";
+        require_once ROOT . "/config/database.php";
 
         $this->connection = $this->drivers[$driver]::connect($connections[$driver]);
     }

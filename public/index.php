@@ -1,6 +1,6 @@
 <?php
-require '../vendor/autoload.php';
-require '../core/util.php';
+require_once '../vendor/autoload.php';
+require_once '../core/util.php';
 
 use Core\{Kernel};
 
