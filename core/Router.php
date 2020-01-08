@@ -55,5 +55,8 @@ class Router
         }
 
         $this->routes_[$request->method][$request->url]($request);
+
+        $db = Container::get("database");
+        $db->closeConnecion();
     }
 }

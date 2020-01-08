@@ -35,7 +35,7 @@ class Database
         return $this->connection;
     }
 
-    public function removeConnection() {
+    public function closeConnection() {
         $this->connection = null;
     }
 }
