@@ -9,13 +9,6 @@ services:
       - ../../:/var/www/html/
     links:
       - mysql
-    command: >
-      sh -c "composer install &&
-             npm install &&
-             composer dump-autoload -o &&
-             npm run tsc &&
-             service apache2 restart
-             tail -f /dev/null"
     networks:
       - default
 
