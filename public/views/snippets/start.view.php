@@ -8,11 +8,5 @@
     <title>Document</title>
 </head>
 <body>
-<ul>
-    <li>
-        Some Content!
-    </li>
-</ul>
-</body>
 
-</html>
+<? require_once "navbar.view.php" ?>
