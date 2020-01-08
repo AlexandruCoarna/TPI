@@ -1,16 +1,7 @@
 Project install
 
-Run following commands:
-- ``cd docker-compose/tpi``
-- ``docker-compose up --build -d``
+To run this project very easy, you need Docker
 
-In another terminal run this after the compose up is done:
--  ``docker exec -it tpi-web bash``
+Go into the project root directory, ``cd docker-compose/tpi`` and run ``docker-compose up --build -d``
 
-Inside the container run following commands:
-- ``npm install``
-- ``composer install``
-- ``npm run tsc``
-- ``composer dump-autoload -o``
-
-After all of this, if you go into the browser and fire up ``http://localhost:8000`` the application should start.
+After the process is done, wait few seconds to few minutes (all packages and dump must pe installed) and access ``http://localhost:8000``
