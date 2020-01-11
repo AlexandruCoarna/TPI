@@ -61,9 +61,6 @@
         }
     }
 
-    @media screen and (max-width: 600px) {
-
-    }
 </style>
 <div class="topnav" id="navbar">
     <a href="/" customUrl="true">Student List</a>

@@ -1,21 +1,54 @@
-table {
+#student-list {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
     border: 1px solid #ddd;
 }
 
-th, td {
+#student-list th, td {
     text-align: left;
     padding: 8px;
 }
 
-tr:nth-child(even) {
+#student-list tr:nth-child(even) {
     background-color: #f2f2f2
 }
 
+#add-student-wrapper {
+    width: 80%;
+    margin: 5px auto;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+#add-student input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#add-student input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px auto;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#add-student input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+
 .main {
-    position: relative;
     margin: 10px auto;
     width: 80%;
     padding: 10px;
