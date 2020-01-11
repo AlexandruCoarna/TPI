@@ -1,5 +1,6 @@
 <? require_once "snippets/start.view.php" ?>
 <? require_once "snippets/navbar.view.php" ?>
+
 <div class="main">
     <div id="add-student-wrapper">
         <form id="add-student">
@@ -20,9 +21,10 @@
 
             <label for="city">City</label>
             <input type="text" id="city" name="lastname" placeholder="City">
-            
+
             <input type="submit" value="Add Student">
         </form>
     </div>
 </div>
+
 <? require_once "snippets/end.view.php" ?>

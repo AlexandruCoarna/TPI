@@ -62,6 +62,7 @@
     }
 
 </style>
+
 <div class="navbar" id="navbar">
     <a href="/" customUrl="true">Student List</a>
     <a href="/add-student" customUrl="true">Add Student</a>
