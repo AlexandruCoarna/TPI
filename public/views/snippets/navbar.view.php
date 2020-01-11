@@ -3,7 +3,7 @@
         overflow: hidden;
         background-color: #333;
         margin: 0 auto;
-        width: 80%;
+        width: 75%;
     }
 
     .navbar a {
