@@ -1,4 +1,5 @@
 <? require_once "snippets/start.view.php" ?>
+<? require_once "snippets/navbar.view.php" ?>
 <div class="main">
     <table id="student-list">
         <tr>

@@ -1,12 +1,12 @@
 <style>
-    .topnav {
+    .navbar {
         overflow: hidden;
         background-color: #333;
         margin: 0 auto;
         width: 80%;
     }
 
-    .topnav a {
+    .navbar a {
         float: left;
         display: block;
         color: #f2f2f2;
@@ -16,53 +16,53 @@
         font-size: 17px;
     }
 
-    .topnav a:hover {
+    .navbar a:hover {
         background-color: #ddd;
         color: black;
     }
 
-    .topnav a.active {
+    .navbar a.active {
         background-color: #4CAF50;
         color: white;
     }
 
-    .topnav .icon {
+    .navbar .icon {
         display: none;
     }
 
     @media screen and (max-width: 750px) {
-        .topnav a:not(:first-child) {
+        .navbar a:not(:first-child) {
             display: none;
         }
 
-        .topnav a.icon {
+        .navbar a.icon {
             float: right;
             display: block;
         }
 
-        .topnav.responsive {
+        .navbar.responsive {
             position: relative;
         }
 
-        .topnav.responsive .icon {
+        .navbar.responsive .icon {
             position: absolute;
             right: 0;
             top: 0;
         }
 
-        .topnav.responsive a {
+        .navbar.responsive a {
             float: none;
             display: block;
             text-align: left;
         }
 
-        .topnav, .main {
+        .navbar, .main {
             width: 100%;
         }
     }
 
 </style>
-<div class="topnav" id="navbar">
+<div class="navbar" id="navbar">
     <a href="/" customUrl="true">Student List</a>
     <a href="/add-student" customUrl="true">Add Student</a>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -72,19 +72,17 @@
 
 <script>
     function myFunction() {
-        let navElem = document.getElementById("navbar");
-        if (navElem.className === "topnav") {
+        let navElem = document.querySelector("#navbar");
+        if (navElem.className === "navbar") {
             navElem.className += " responsive";
         } else {
-            navElem.className = "topnav";
+            navElem.className = "navbar";
         }
     }
 
-    let navElem = document.getElementById("navbar");
-    let currentLocation = window.location.href;
-    let links = navElem.querySelectorAll("[customUrl=true]");
+    let links = document.querySelectorAll("[customUrl=true]");
     for (let i = 0; i < links.length; i++) {
-        if (links[i].href === currentLocation) {
+        if (links[i].href === window.location.href) {
             links[i].className += "active";
         } else {
             links[i].className = null;

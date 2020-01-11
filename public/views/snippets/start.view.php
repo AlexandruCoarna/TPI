@@ -10,5 +10,3 @@
     <link rel="stylesheet" href="../../css/main.css">
 </head>
 <body>
-
-<? require_once "navbar.view.php" ?>
