@@ -13,6 +13,6 @@ RUN chgrp -R www-data /var/www
 RUN find /var/www -type d -exec chmod 775 {} +
 RUN find /var/www -type f -exec chmod 664 {} +
 
-EXPOSE 80
+RUN service apache2 restart
 
-CMD ["/usr/sbin/apache2ctl","-DFOREGROUND"]
+EXPOSE 80
