@@ -1,19 +1,6 @@
-const onAddStudentsubmit = (event: Event) => {
-    event.preventDefault();
-    const formControls = new Form(event.target as HTMLFormElement).getControls();
-    const minLengthValidator = (value: any) => {
-        if (value.length < 5) {
-            return "Minimum length is 5 characrers";
-        }
-        return true;
-    };
-    new Validator(formControls.firstName, [minLengthValidator])
-};
-
-
 class Form {
-    private form: HTMLFormElement;
-    private controls: { [key: string]: HTMLInputElement } = {};
+    private readonly form: HTMLFormElement;
+    private controls: { [key: string]: FormControl } = {};
 
     constructor(form: HTMLFormElement) {
         this.form = form;
@@ -25,46 +12,77 @@ class Form {
         for (let i = 0; i < formElements.length; i++) {
             let input: HTMLInputElement = formElements[i] as HTMLInputElement;
             if (input.type !== 'submit') {
-                console.log(input.validity);
-                this.controls[input.name] = input;
-                this.removeErrElement(input);
+                this.controls[input.name] = new FormControl;
+                this.controls[input.name]["nativeElement"] = input;
+                this.controls[input.name]["initialElementState"] = input.cloneNode(true) as HTMLInputElement;
             }
-        }
-    }
-
-    private removeErrElement(input: HTMLInputElement) {
-        const errElement = document.querySelector(`#${input.name}_err_element`);
-        if (errElement) {
-            errElement.parentNode.removeChild(errElement);
         }
     }
 
     public getControls() {
         return this.controls;
     }
+
+    public getNativeform(): HTMLFormElement {
+        return this.form;
+    }
+
+    public getControl(name: string) {
+        return this.controls[name];
+    }
 }
 
 class Validator {
-    private readonly iniput: HTMLInputElement;
+    private readonly formControl: FormControl;
     private readonly validators: ((value: any) => boolean | string)[];
 
-    constructor(input: HTMLInputElement, validators: ((value: any) => boolean | string)[]) {
-        this.iniput = input;
+    constructor(formControl: FormControl, validators: ((value: any) => boolean | string)[]) {
+        this.formControl = formControl;
         this.validators = validators;
         this.validate();
     }
 
     private validate() {
         this.validators.forEach(validator => {
-            const validated = validator(this.iniput.value);
-            const initialBorderStyle = this.iniput.style.border;
+            const validated = validator(this.formControl.nativeElement.value);
             if (validated !== true) {
-                this.iniput.style.border = "1px solid red";
-                this.iniput.insertAdjacentHTML("afterend", "<div id='" + this.iniput.name + "_err_element' style='color: red'>" + validated + "</div>");
+                this.formControl.nativeElement.style.border = "1px solid red";
+                this.formControl
+                    .nativeElement
+                    .insertAdjacentHTML(
+                        "afterend",
+                        `
+                        <div id="${this.formControl.nativeElement.name}_err_element" 
+                            style="color: red; padding: 0 5px 5px 5px;">
+                            ${validated}
+                        </div>`
+                    );
                 throw new Error(validated as string);
             } else {
-                this.iniput.style.border = initialBorderStyle;
+                this.formControl.nativeElement.style.border = this.formControl.initialElementState.style.border;
+                const errElement = document.querySelector(`#${this.formControl.nativeElement.name}_err_element`);
+                errElement.parentNode.removeChild(errElement);
             }
         });
     }
 }
+
+class FormControl {
+    nativeElement: HTMLInputElement;
+    initialElementState: HTMLInputElement
+}
+
+const addStudentForm = new Form(document.querySelector("#add-student"));
+
+addStudentForm.getNativeform().onsubmit = (event: Event) => {
+    event.preventDefault();
+    const formControls = addStudentForm.getControls();
+    const minLengthValidator = (value: any) => {
+        if (value.length < 5) {
+            return "Minimum length is 5 characrers";
+        }
+        return true;
+    };
+    new Validator(formControls.firstName, [minLengthValidator]);
+    console.log(1);
+};

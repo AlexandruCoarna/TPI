@@ -3,7 +3,7 @@
 
 <div class="main">
     <div id="add-student-wrapper">
-        <form id="add-student" onsubmit="onAddStudentsubmit(event)">
+        <form id="add-student">
             <label for="fname">First Name</label>
             <input type="text" id="fname" name="firstName" placeholder="First Name">
 
