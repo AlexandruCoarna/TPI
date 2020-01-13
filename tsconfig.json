@@ -4,9 +4,10 @@
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
-    "outFile": "./public/js/main.js",
+    "outDir": "./public/js",
     "sourceMap": true,
-    "target": "esnext"
+    "target": "esnext",
+    "strictPropertyInitialization": false
   },
   "include": [
     "./src/**/*"
