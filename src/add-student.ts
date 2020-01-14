@@ -1,7 +1,9 @@
 import {Form} from "./core/Form";
 import {Validator} from "./core/Validator";
 import {emailValidator, minLengthValidator, phoneNumberValidator, required} from "./validators";
-import {vanillaToast} from "./core/models/VanillaToast";
+import {VanillaToast} from "./core/models/VanillaToast";
+
+declare const vanillaToast: VanillaToast;
 
 const addStudentForm = new Form(document.querySelector("#add-student"));
 
@@ -56,11 +58,13 @@ addStudentForm.getNativeform().onsubmit = async (event: Event) => {
             return;
         }
 
+        console.log(vanillaToast);
+
         vanillaToast.success(responseBody.message, {duration: 2000});
 
         addStudentForm.getNativeform().reset();
     } catch (e) {
-
+        console.error(e);
     }
 
 };

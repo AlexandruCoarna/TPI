@@ -12,33 +12,6 @@
             <th>Country</th>
             <th>City</th>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>Coarna</td>
-            <td>Alexandru</td>
-            <td>0769889441</td>
-            <td>coarna.alexandru@gmail.com</td>
-            <td>Romania</td>
-            <td>Galati</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Coarna</td>
-            <td>Alexandru</td>
-            <td>0769889441</td>
-            <td>coarna.alexandru@gmail.com</td>
-            <td>Romania</td>
-            <td>Galati</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Coarna</td>
-            <td>Alexandru</td>
-            <td>0769889441</td>
-            <td>coarna.alexandru@gmail.com</td>
-            <td>Romania</td>
-            <td>Galati</td>
-        </tr>
     </table>
 </div>
 <script src="../bundles/student-list.bundle.js"></script>

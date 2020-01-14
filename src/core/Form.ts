@@ -9,6 +9,18 @@ export class Form {
         this.generateControls();
     }
 
+    public getControls() {
+        return this.controls;
+    }
+
+    public getNativeform(): HTMLFormElement {
+        return this.form;
+    }
+
+    public getControl(name: string) {
+        return this.controls[name];
+    }
+
     private generateControls() {
         const formElements: HTMLFormControlsCollection = this.form.elements;
         for (let i = 0; i < formElements.length; i++) {
@@ -22,17 +34,5 @@ export class Form {
             this.controls[input.name]["nativeElement"] = input;
             this.controls[input.name]["initialElementState"] = input.cloneNode(true) as HTMLInputElement;
         }
-    }
-
-    public getControls() {
-        return this.controls;
-    }
-
-    public getNativeform(): HTMLFormElement {
-        return this.form;
-    }
-
-    public getControl(name: string) {
-        return this.controls[name];
     }
 }

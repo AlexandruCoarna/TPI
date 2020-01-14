@@ -3,6 +3,25 @@
 use Core\{Container, Request, Response\JsonResponse, Router};
 
 Router::post("/api/add-student", function (Request $request) {
+    /* @var $conn PDO */;
+
+    $student = $request->body;
+
+    $conn = Container::get("database")->getConnection();
+
+    $stm = $conn->prepare(
+        "insert into student (first_name,last_name,phone_number,email,country,city)values(?,?,?,?,?,?)"
+    );
+
+    $stm->execute([
+        $student['firstName'],
+        $student['lastName'],
+        $student['phoneNumber'],
+        $student['email'],
+        $student['country'],
+        $student['city']
+    ]);
+
     $response = [
         "success" => true,
         "message" => "Successfully added!"
@@ -14,7 +33,6 @@ Router::post("/api/add-student", function (Request $request) {
 Router::get("/api/get-students", function (Request $request) {
     /* @var $conn PDO */;
 
-    $student = $request->body;
     $conn = Container::get("database")->getConnection();
     $stm = $conn->prepare("select * from student");
     $stm->execute();
