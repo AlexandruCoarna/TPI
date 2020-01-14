@@ -20,9 +20,10 @@ class Kernel
             return 0;
         } catch (Exception | Error $exception) {
             return new JsonResponse([
+                "ok" => false,
                 "message" => $exception->getMessage(),
                 "stack" => $exception->getTrace()
-            ]);
+            ], 400);
         }
     }
 }

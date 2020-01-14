@@ -1,31 +1,66 @@
 import {Form} from "./core/Form";
 import {Validator} from "./core/Validator";
-
+import {emailValidator, minLengthValidator, phoneNumberValidator, required} from "./validators";
+import {vanillaToast} from "./core/models/VanillaToast";
 
 const addStudentForm = new Form(document.querySelector("#add-student"));
 
-addStudentForm.getNativeform().onsubmit = (event: Event) => {
+addStudentForm.getNativeform().onsubmit = async (event: Event) => {
     event.preventDefault();
     const formControls = addStudentForm.getControls();
-    const minLengthValidator = (value: any) => {
-        if (value.length < 5) {
-            return "This field must be at least 5 characters long";
-        }
-        return true;
-    };
+    try {
+        new Validator([
+            {
+                control: formControls.firstName,
+                validators: [required, minLengthValidator]
+            },
+            {
+                control: formControls.lastName,
+                validators: [required, minLengthValidator]
+            },
+            {
+                control: formControls.phoneNumber,
+                validators: [required, phoneNumberValidator]
+            },
+            {
+                control: formControls.email,
+                validators: [required, emailValidator]
+            },
+            {
+                control: formControls.country,
+                validators: [required]
+            },
+            {
+                control: formControls.city,
+                validators: [required]
+            }
+        ]);
+        const student: { [key: string]: any } = {};
 
-    const required = (value: any) => {
-        if (!value) {
-            return "This field is required";
-        }
-        return true;
-    };
-    new Validator(formControls.firstName, [required, minLengthValidator]);
-    new Validator(formControls.lastName, [required, minLengthValidator]);
-    new Validator(formControls.phoneNumber, [required]);
-    new Validator(formControls.email, [required, minLengthValidator]);
-    new Validator(formControls.country, [required]);
-    new Validator(formControls.city, [required]);
+        Object.keys(formControls).forEach(key => {
+            student[key] = formControls[key].nativeElement.value;
+        });
 
-    addStudentForm.getNativeform().reset();
+        const response = await fetch("/api/add-student", {
+            body: JSON.stringify(student),
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const responseBody = await response.json() as { message: string };
+
+        if (!response.ok) {
+            vanillaToast.error(responseBody.message, {duration: 2000});
+            return;
+        }
+
+        vanillaToast.success(responseBody.message, {duration: 2000});
+
+        addStudentForm.getNativeform().reset();
+    } catch (e) {
+
+    }
+
 };

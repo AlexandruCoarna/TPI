@@ -83,7 +83,7 @@
 
     let links = document.querySelectorAll("[customUrl=true]");
     for (let i = 0; i < links.length; i++) {
-        if (links[i].href === window.location.href) {
+        if (links[i].href.split("?")[0] === window.location.href.split("?")[0]) {
             links[i].className += "active";
         } else {
             links[i].className = null;

@@ -41,5 +41,5 @@
         </tr>
     </table>
 </div>
-
+<script src="../bundles/student-list.bundle.js"></script>
 <? require_once "snippets/end.view.php" ?>
