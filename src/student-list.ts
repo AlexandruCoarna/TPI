@@ -13,9 +13,9 @@ const getStudents = async () => {
     const initialTableHtml = table.innerHTML;
     let newHtml = '';
 
-    console.log(responseBody);
-    responseBody.data.forEach((student: any, index: number) => {
-        newHtml += `
+    if (responseBody.data.length) {
+        responseBody.data.forEach((student: any, index: number) => {
+            newHtml += `
             <tr>
                 <td>${index + 1}</td>
                 <td>${student.first_name}</td>
@@ -26,8 +26,9 @@ const getStudents = async () => {
                 <td>${student.city}</td>
              </tr>
         `;
-    });
-    table.innerHTML = initialTableHtml + newHtml;
+        });
+        table.innerHTML = initialTableHtml + newHtml;
+    }
 };
 
 getStudents().then();
