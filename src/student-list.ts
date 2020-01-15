@@ -82,4 +82,9 @@ valueInput.onkeydown = debounce(async function () {
     await getStudents(true, criteriaInput.value, valueInput.value);
 }, 500);
 
+criteriaInput.onchange = async () => {
+    valueInput.value = '';
+    await getStudents(true, criteriaInput.value);
+};
+
 getStudents(false).then();
