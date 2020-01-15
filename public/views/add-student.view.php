@@ -16,11 +16,8 @@
             <label for="email">Email *</label>
             <input type="text" id="email" name="email" placeholder="Email">
 
-            <label for="country">Country *</label>
-            <input type="text" id="country" name="country" placeholder="Country">
-
-            <label for="city">City *</label>
-            <input type="text" id="city" name="city" placeholder="City">
+            <label for="pidnumber">Personal Id Number *</label>
+            <input type="text" id="pidnumber" name="personalIdNumber" placeholder="Personal Id Number">
 
             <input type="submit" value="Add Student">
         </form>

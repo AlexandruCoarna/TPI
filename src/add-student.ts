@@ -29,11 +29,7 @@ addStudentForm.getNativeform().onsubmit = async (event: Event) => {
                 validators: [required, emailValidator]
             },
             {
-                control: formControls.country,
-                validators: [required]
-            },
-            {
-                control: formControls.city,
+                control: formControls.personalIdNumber,
                 validators: [required]
             }
         ]);

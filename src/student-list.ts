@@ -9,8 +9,8 @@ const getStudents = async () => {
         return;
     }
 
-    const table = document.querySelector("#student-list");
-    const initialTableHtml = table.innerHTML;
+    let entriesPlaceholder: HTMLElement = document.querySelector("#student-entries-placeholder");
+    entriesPlaceholder.style.display = 'none';
     let newHtml = '';
 
     if (responseBody.data.length) {
@@ -22,12 +22,11 @@ const getStudents = async () => {
                 <td>${student.last_name}</td>
                 <td>${student.phone_number}</td>
                 <td>${student.email}</td>
-                <td>${student.country}</td>
-                <td>${student.city}</td>
+                <td>${student.personal_id_number}</td>
              </tr>
         `;
         });
-        table.innerHTML = initialTableHtml + newHtml;
+        entriesPlaceholder.insertAdjacentHTML('afterend', newHtml);
     }
 };
 

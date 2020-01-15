@@ -10,7 +10,7 @@ Router::post("/api/add-student", function (Request $request) {
     $conn = Container::get("database")->getConnection();
 
     $stm = $conn->prepare(
-        "insert into student (first_name,last_name,phone_number,email,country,city)values(?,?,?,?,?,?)"
+        "insert into student (first_name,last_name,phone_number,email,personal_id_number)values(?,?,?,?,?)"
     );
 
     $stm->execute([
@@ -18,8 +18,7 @@ Router::post("/api/add-student", function (Request $request) {
         $student['lastName'],
         $student['phoneNumber'],
         $student['email'],
-        $student['country'],
-        $student['city']
+        $student['personalIdNumber'],
     ]);
 
     $response = [

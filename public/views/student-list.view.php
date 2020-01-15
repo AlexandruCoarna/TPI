@@ -3,15 +3,17 @@
 
 <div class="main">
     <table id="student-list">
+        <tbody>
         <tr>
             <th>No.</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Phone No.</th>
+            <th>Phone Number</th>
             <th>Email</th>
-            <th>Country</th>
-            <th>City</th>
+            <th>Personal Id Number</th>
         </tr>
+        <tr id="student-entries-placeholder"></tr>
+        </tbody>
     </table>
 </div>
 <script src="../bundles/student-list.bundle.js"></script>
