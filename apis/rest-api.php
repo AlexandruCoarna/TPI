@@ -19,8 +19,8 @@ Router::post("/api/add-student", function (Request $request) {
 
     $stm->execute([
         $student["email"],
-        $student["phoneNumber"],
-        $student["personalIdNumber"]
+        $student["phone_number"],
+        $student["personal_id_number"]
     ]);
 
     $result = $stm->fetchAll(PDO::FETCH_ASSOC);
@@ -28,7 +28,7 @@ Router::post("/api/add-student", function (Request $request) {
     if (count($result)) {
         $message = '';
 
-        if ($result[0]["phone_number"] === $student["phoneNumber"]) {
+        if ($result[0]["phone_number"] === $student["phone_number"]) {
             $message .= "This phone number is already used <br>";
         }
 
@@ -36,7 +36,7 @@ Router::post("/api/add-student", function (Request $request) {
             $message .= "This email is already used <br>";
         }
 
-        if ($result[0]["personal_id_number"] === $student["personalIdNumber"]) {
+        if ($result[0]["personal_id_number"] === $student["personal_id_number"]) {
             $message .= "This personal id number is already used <br>";
         }
 
@@ -51,11 +51,11 @@ Router::post("/api/add-student", function (Request $request) {
     );
 
     $stm->execute([
-        $student['firstName'],
-        $student['lastName'],
-        $student['phoneNumber'],
+        $student['first_name'],
+        $student['last_name'],
+        $student['phone_number'],
         $student['email'],
-        $student['personalIdNumber'],
+        $student['personal_id_number'],
     ]);
 
     $response = [

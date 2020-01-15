@@ -1,24 +1,19 @@
 import {apiCall} from "./core/ApiCall";
-import {CustomResponse} from "./core/models/CustomResponse";
+import {Student} from "./core/models/Student";
 
 const getStudents = async (filtered: boolean, criteria: string = '', value: string = '') => {
-    let response: CustomResponse;
 
-    if (!filtered) {
-        response = await apiCall("/api/get-students", {
-            method: "GET"
-        });
-    } else {
-        response = await apiCall(`/api/get-filtered-students?${criteria}=${value}`, {
-            method: "GET"
-        });
-    }
+    const url = filtered ? `/api/get-filtered-students?${criteria}=${value}` : "/api/get-students";
+
+    const response = await apiCall(url, {
+        method: "GET"
+    });
 
     if (!response.ok) {
         return;
     }
 
-    const responseBody = response.getBody as { data: [] };
+    const responseBody = response.getBody as { data: Student[] };
 
     if (responseBody.data.length) {
         renderStudentTable(responseBody.data)
@@ -27,7 +22,7 @@ const getStudents = async (filtered: boolean, criteria: string = '', value: stri
     }
 };
 
-const renderStudentTable = (students: []) => {
+const renderStudentTable = (students: Student[]) => {
     renderEmptyStudents(false);
     let entriesPlaceholder: HTMLElement = document.querySelector("#student-entries-placeholder");
     entriesPlaceholder.style.display = 'none';
@@ -38,13 +33,7 @@ const renderStudentTable = (students: []) => {
         target.parentNode.removeChild(target);
     });
 
-    students.forEach((student: {
-        first_name: string
-        last_name: string
-        phone_number: string
-        email: string
-        personal_id_number: string
-    }, index: number) => {
+    students.forEach((student: Student, index: number) => {
         newHtml += `
             <tr student-auto-inserted>
                 <td>${index + 1}</td>
@@ -67,11 +56,12 @@ const renderEmptyStudents = (show: boolean) => {
 
     if (show) {
         emptyPlaceholder.style.display = "block";
-        emptyPlaceholder.innerHTML = "<h3>There are no registered students</h3>";
         studentTable.style.display = 'none';
+        emptyPlaceholder.innerHTML = "<h3>There are no registered students</h3>";
     } else {
         studentTable.style.display = 'table';
         emptyPlaceholder.style.display = "none";
+        emptyPlaceholder.innerHTML = "";
     }
 };
 
