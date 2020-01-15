@@ -2,6 +2,21 @@
 <? require_once "snippets/navbar.view.php" ?>
 
 <div class="main">
+    <p>
+        Filter Students
+    </p>
+    <form id="filter-students">
+        <label for="criteria">Criteria</label>
+        <select name="criteria" id="criteria">
+            <option value="firstName">First Name</option>
+        </select>
+
+        <label for="value">Value</label>
+        <input type="text" name="value" id="value" placeholder="Value">
+    </form>
+
+    <br>
+
     <table id="student-list">
         <tbody>
         <tr>

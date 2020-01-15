@@ -2,6 +2,7 @@ import {Form} from "./core/Form";
 import {Validator} from "./core/Validator";
 import {emailValidator, minLengthValidator, phoneNumberValidator, required} from "./validators";
 import {VanillaToast} from "./core/models/VanillaToast";
+import {apiCall} from "./core/ApiCall";
 
 declare const vanillaToast: VanillaToast;
 
@@ -33,13 +34,14 @@ addStudentForm.getNativeform().onsubmit = async (event: Event) => {
                 validators: [required]
             }
         ]);
+
         const student: { [key: string]: any } = {};
 
         Object.keys(formControls).forEach(key => {
             student[key] = formControls[key].nativeElement.value;
         });
 
-        const response = await fetch("/api/add-student", {
+        const response = await apiCall("/api/add-student", {
             body: JSON.stringify(student),
             method: "POST",
             headers: {
@@ -47,16 +49,9 @@ addStudentForm.getNativeform().onsubmit = async (event: Event) => {
             }
         });
 
-        const responseBody = await response.json() as { message: string };
-
         if (!response.ok) {
-            vanillaToast.error(responseBody.message, {duration: 2000});
             return;
         }
-
-        console.log(vanillaToast);
-
-        vanillaToast.success(responseBody.message, {duration: 2000});
 
         addStudentForm.getNativeform().reset();
     } catch (e) {

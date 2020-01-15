@@ -1,13 +1,15 @@
+import {apiCall} from "./core/ApiCall";
+
 const getStudents = async () => {
-    const repsonse = await fetch("/api/get-students", {
+    const repsonse = await apiCall("/api/get-students", {
         method: "GET"
     });
-
-    const responseBody = await repsonse.json() as { data: [] };
 
     if (!repsonse.ok) {
         return;
     }
+
+    const responseBody = repsonse.getBody as { data: [] };
 
     let entriesPlaceholder: HTMLElement = document.querySelector("#student-entries-placeholder");
     entriesPlaceholder.style.display = 'none';

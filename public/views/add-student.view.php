@@ -14,7 +14,7 @@
             <input type="text" id="pnumber" name="phoneNumber" placeholder="Phone Number">
 
             <label for="email">Email *</label>
-            <input type="text" id="email" name="email" placeholder="Email">
+            <input type="email" id="email" name="email" placeholder="Email">
 
             <label for="pidnumber">Personal Id Number *</label>
             <input type="text" id="pidnumber" name="personalIdNumber" placeholder="Personal Id Number">
