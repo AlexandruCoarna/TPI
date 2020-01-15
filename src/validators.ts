@@ -24,8 +24,19 @@ export const phoneNumberValidator = (value: any) => {
 };
 
 export const emailValidator = (value: any) => {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
+    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
         return true;
     }
     return "Invalid email address";
+};
+
+export const number = (value: any) => {
+    const v = value as string;
+    const pattern = /^[0-9]*$/;
+
+    if (!v.match(pattern)) {
+        return "Personal Id Numner must contain only digits";
+    }
+
+    return true;
 };

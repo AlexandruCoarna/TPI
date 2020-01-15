@@ -1,6 +1,6 @@
 import {Form} from "./core/Form";
 import {Validator} from "./core/Validator";
-import {emailValidator, minLengthValidator, phoneNumberValidator, required} from "./validators";
+import {emailValidator, minLengthValidator, number, phoneNumberValidator, required} from "./validators";
 import {apiCall} from "./core/ApiCall";
 import {Student} from "./core/models/Student";
 
@@ -12,15 +12,15 @@ addStudentForm.getNativeform().onsubmit = async (event: Event) => {
     try {
         new Validator([
             {
-                control: formControls.firstName,
+                control: formControls.first_name,
                 validators: [required, minLengthValidator]
             },
             {
-                control: formControls.lastName,
+                control: formControls.last_name,
                 validators: [required, minLengthValidator]
             },
             {
-                control: formControls.phoneNumber,
+                control: formControls.phone_number,
                 validators: [required, phoneNumberValidator]
             },
             {
@@ -28,18 +28,18 @@ addStudentForm.getNativeform().onsubmit = async (event: Event) => {
                 validators: [required, emailValidator]
             },
             {
-                control: formControls.personalIdNumber,
-                validators: [required]
+                control: formControls.personal_id_number,
+                validators: [required, number]
             }
         ]);
 
         const student: Student = new Student();
 
-        student.first_name = formControls.firstName.nativeElement.value;
-        student.last_name = formControls.lastName.nativeElement.value;
-        student.phone_number = formControls.phoneNumber.nativeElement.value;
+        student.first_name = formControls.first_name.nativeElement.value;
+        student.last_name = formControls.last_name.nativeElement.value;
+        student.phone_number = formControls.phone_number.nativeElement.value;
         student.email = formControls.email.nativeElement.value;
-        student.personal_id_number = formControls.personalIdNumber.nativeElement.value;
+        student.personal_id_number = formControls.personal_id_number.nativeElement.value;
 
         const response = await apiCall("/api/add-student", {
             body: JSON.stringify(student),
