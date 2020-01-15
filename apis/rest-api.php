@@ -85,17 +85,15 @@ Router::get("/api/get-students", function () {
 Router::get("/api/get-filtered-students", function (Request $request) {
     /* @var $conn PDO */
 
-    $acceptedTables = [
+    $criteria = array_key_first($request->queryParams);
+
+    if (!in_array($criteria, [
         "first_name",
         "last_name",
         "phone_number",
         "email",
         "personal_id_number"
-    ];
-
-    $criteria = array_key_first($request->queryParams);
-
-    if (!in_array($criteria, $acceptedTables)) {
+    ])) {
         $response = [
             "ok" => false,
             "message" => "Invalid criteria!"
@@ -105,18 +103,13 @@ Router::get("/api/get-filtered-students", function (Request $request) {
 
     $value = $request->queryParams[$criteria];
     $conn = Container::get("database")->getConnection();
-    $column = $conn->quote($criteria);
+    $column = explode("'", $conn->quote($criteria))[1];
     $value = $conn->quote("%$value%");
-    $c = '';
-
-    for ($i = 1; $i < strlen($column) - 1; $i++) {
-        $c .= $column[$i];
-    }
 
     if (!$value) {
         $stm = $conn->prepare("select * from student");
     } else {
-        $stm = $conn->prepare("select * from student where $c like {$value}");
+        $stm = $conn->prepare("select * from student where $column like $value");
     }
 
     $stm->execute();
