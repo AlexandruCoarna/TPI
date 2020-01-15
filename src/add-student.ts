@@ -1,10 +1,8 @@
 import {Form} from "./core/Form";
 import {Validator} from "./core/Validator";
 import {emailValidator, minLengthValidator, phoneNumberValidator, required} from "./validators";
-import {VanillaToast} from "./core/models/VanillaToast";
 import {apiCall} from "./core/ApiCall";
 
-declare const vanillaToast: VanillaToast;
 
 const addStudentForm = new Form(document.querySelector("#add-student"));
 

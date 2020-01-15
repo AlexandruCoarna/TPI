@@ -5,10 +5,14 @@
     <p>
         Filter Students
     </p>
-    <form id="filter-students">
+    <form id="filter-students" onsubmit="event.preventDefault();">
         <label for="criteria">Criteria</label>
         <select name="criteria" id="criteria">
-            <option value="firstName">First Name</option>
+            <option value="first_name">First Name</option>
+            <option value="last_name">Last Name</option>
+            <option value="phone_number">Phone Number</option>
+            <option value="email">Email</option>
+            <option value="personal_id_number">Personal Id Number</option>
         </select>
 
         <label for="value">Value</label>
@@ -30,6 +34,8 @@
         <tr id="student-entries-placeholder"></tr>
         </tbody>
     </table>
+
+    <div id="student-empty-placeholder"></div>
 </div>
 <script src="../bundles/student-list.bundle.js"></script>
 <? require_once "snippets/end.view.php" ?>

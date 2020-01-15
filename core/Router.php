@@ -51,7 +51,7 @@ class Router
         }
 
         if (!key_exists($request->url, $this->routes_[$request->method])) {
-            header("Location: http://localhost:8000");
+            throw new Error("This route is invalid");
         }
 
         $this->routes_[$request->method][$request->url]($request);

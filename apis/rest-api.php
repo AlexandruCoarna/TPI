@@ -7,21 +7,8 @@ Router::post("/api/add-student", function (Request $request) {
 
     $student = $request->body;
 
-    $empty = false;
-
     foreach ($student as $key => $value) {
-        if (!$value) {
-            $empty = true;
-        }
-
         $student[$key] = htmlspecialchars($value, ENT_NOQUOTES);
-    }
-
-    if ($empty) {
-        return new JsonResponse([
-            "message" => "All fields are required, no empty fields allowed!",
-            "ok" => false
-        ], 400);
     }
 
     $conn = Container::get("database")->getConnection();
@@ -87,6 +74,53 @@ Router::get("/api/get-students", function () {
     $stm->execute();
     $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
+    $response = [
+        "ok" => true,
+        "data" => $result
+    ];
+
+    return new JsonResponse($response);
+});
+
+Router::get("/api/get-filtered-students", function (Request $request) {
+    /* @var $conn PDO */
+
+    $acceptedTables = [
+        "first_name",
+        "last_name",
+        "phone_number",
+        "email",
+        "personal_id_number"
+    ];
+
+    $criteria = array_key_first($request->queryParams);
+
+    if (!in_array($criteria, $acceptedTables)) {
+        $response = [
+            "ok" => false,
+            "message" => "Invalid criteria!"
+        ];
+        return new JsonResponse($response, 400);
+    }
+
+    $value = $request->queryParams[$criteria];
+    $conn = Container::get("database")->getConnection();
+    $column = $conn->quote($criteria);
+    $value = $conn->quote("%$value%");
+    $c = '';
+
+    for ($i = 1; $i < strlen($column) - 1; $i++) {
+        $c .= $column[$i];
+    }
+
+    if (!$value) {
+        $stm = $conn->prepare("select * from student");
+    } else {
+        $stm = $conn->prepare("select * from student where $c like {$value}");
+    }
+
+    $stm->execute();
+    $result = $stm->fetchAll(PDO::FETCH_ASSOC);
     $response = [
         "ok" => true,
         "data" => $result
