@@ -5,7 +5,7 @@ module.exports = {
         'add-student': './src/add-student',
         'student-list': './src/student-list'
     },
-    mode: 'development',
+    mode: 'production',
     module: {
         rules: [
             {
