@@ -30,6 +30,7 @@
             <th>Phone Number</th>
             <th>Email</th>
             <th>Personal Id Number</th>
+            <th>Actions</th>
         </tr>
         <tr id="student-entries-placeholder"></tr>
         </tbody>

@@ -42,6 +42,9 @@ const renderStudentTable = (students: Student[]) => {
                 <td>${student.phone_number}</td>
                 <td>${student.email}</td>
                 <td>${student.personal_id_number}</td>
+                <td>
+                    <button onclick="deleteStudent(${student.personal_id_number});">Delete</button>
+                </td>
              </tr>
         `;
     });
@@ -86,5 +89,12 @@ criteriaInput.onchange = async () => {
     valueInput.value = '';
     await getStudents(true, criteriaInput.value);
 };
+
+const deleteStudent = (studentPid: number) => {
+    console.log(studentPid);
+};
+
+// @ts-ignore
+window.deleteStudent = deleteStudent;
 
 getStudents(false).then();
