@@ -14,7 +14,7 @@ Router::post("/api/add-student", function (Request $request) {
     $conn = Container::get("database")->getConnection();
 
     $stm = $conn->prepare(
-        "select * from student where email = ? or phone_number = ? or personal_id_number = ? limit 1"
+        "SELECT * FROM student WHERE email = ? OR phone_number = ? OR personal_id_number = ? limit 1"
     );
 
     $stm->execute([
@@ -47,7 +47,7 @@ Router::post("/api/add-student", function (Request $request) {
     }
 
     $stm = $conn->prepare(
-        "insert into student (first_name,last_name,phone_number,email,personal_id_number)values(?,?,?,?,?)"
+        "INSERT INTO student (first_name,last_name,phone_number,email,personal_id_number) VALUES (?,?,?,?,?)"
     );
 
     $stm->execute([
@@ -70,7 +70,7 @@ Router::get("/api/get-students", function () {
     /* @var $conn PDO */
 
     $conn = Container::get("database")->getConnection();
-    $stm = $conn->prepare("select * from student");
+    $stm = $conn->prepare("SELECT * FROM student");
     $stm->execute();
     $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
@@ -107,9 +107,9 @@ Router::get("/api/get-filtered-students", function (Request $request) {
     $value = $conn->quote("%$value%");
 
     if (!$value) {
-        $stm = $conn->prepare("select * from student");
+        $stm = $conn->prepare("SELECT * FROM student");
     } else {
-        $stm = $conn->prepare("select * from student where $column like $value");
+        $stm = $conn->prepare("SELECT * FROM student WHERE $column LIKE $value");
     }
 
     $stm->execute();
@@ -125,10 +125,10 @@ Router::get("/api/get-filtered-students", function (Request $request) {
 Router::post("/api/delete-student", function (Request $request) {
     /* @var $conn PDO */
 
-    $pid = $request->queryParams["pid"];
+    $pid = $request->body["pid"];
 
     $conn = Container::get("database")->getConnection();
-    $stm = $conn->prepare("delete from student where student.personal_number_id = ?");
+    $stm = $conn->prepare("DELETE FROM student WHERE `personal_id_number` = ?");
     $stm->execute([$pid]);
 
     $response = [

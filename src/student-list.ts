@@ -90,8 +90,21 @@ criteriaInput.onchange = async () => {
     await getStudents(true, criteriaInput.value);
 };
 
-const deleteStudent = (studentPid: number) => {
-    console.log(studentPid);
+const deleteStudent = async (studentPid: number) => {
+    if (confirm(`Are you sure you want to delete the student with Personal Number Id: ${studentPid}?`)) {
+        const response = await apiCall(`/api/delete-student`, {
+            method: "POST",
+            body: JSON.stringify({pid: studentPid})
+        });
+
+        if (!response.ok) {
+            return;
+        }
+
+        const valueInput: HTMLInputElement = document.querySelector("#value");
+        const criteriaInput: HTMLSelectElement = document.querySelector("#criteria");
+        await getStudents(true, criteriaInput.value, valueInput.value);
+    }
 };
 
 // @ts-ignore
