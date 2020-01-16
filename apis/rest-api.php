@@ -121,3 +121,20 @@ Router::get("/api/get-filtered-students", function (Request $request) {
 
     return new JsonResponse($response);
 });
+
+Router::post("/api/delete-student", function (Request $request) {
+    /* @var $conn PDO */
+
+    $pid = $request->queryParams["pid"];
+
+    $conn = Container::get("database")->getConnection();
+    $stm = $conn->prepare("delete from student where student.personal_number_id = ?");
+    $stm->execute([$pid]);
+
+    $response = [
+        "ok" => true,
+        "message" => "Successfully deleted student"
+    ];
+
+    return new JsonResponse($response);
+});
