@@ -4,8 +4,7 @@ namespace Core;
 
 use Error;
 
-class Router
-{
+class Router {
     private static array $routes = [
         "GET" => [],
         "POST" => []

@@ -5,8 +5,7 @@ namespace Core;
 use Core\DatabaseDrivers\Mysql;
 use PDO;
 
-class Database
-{
+class Database {
     private array $drivers = [
         "mysql" => Mysql::class
     ];

@@ -4,8 +4,7 @@ namespace Core;
 
 use Error;
 
-class Container
-{
+class Container {
     private static ?Container $instance = null;
 
     private static array $container = [];

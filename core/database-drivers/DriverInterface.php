@@ -2,7 +2,6 @@
 
 namespace Core\DatabaseDrivers;
 
-interface DriverInterface
-{
+interface DriverInterface {
     public static function connect(array $config);
 }

@@ -6,8 +6,7 @@ use Core\Response\JsonResponse;
 use Error;
 use Exception;
 
-class Kernel
-{
+class Kernel {
     public function __construct() {
         $this->run();
     }

@@ -2,8 +2,7 @@
 
 namespace Core;
 
-class Request
-{
+class Request {
     public string $url;
     public string $method;
     public array $body;

@@ -4,8 +4,7 @@ namespace Core\Response;
 
 use Error;
 
-class ViewResponse
-{
+class ViewResponse {
     public function __construct($path, array $args = []) {
         $fullPath = ROOT . "/public/views/{$path}.view.php";
 
