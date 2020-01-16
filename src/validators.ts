@@ -32,7 +32,7 @@ export const emailValidator = (value: any) => {
 
 export const number = (value: any) => {
     const v = value as string;
-    const pattern = /^[0-9]*$/;
+    const pattern = /^[0-9]+$/;
 
     if (!v.match(pattern)) {
         return "Personal Id Numner must contain only digits";
