@@ -9,12 +9,16 @@
     padding: 7px;
 }
 
-#student-list tr:nth-child(even) {
+#student-list tr:nth-child(odd) {
     background-color: #f2f2f2;
 }
 
+#student-list tr:nth-child(even) {
+    background-color: #8bd898;
+}
+
 #student-list tr:first-child {
-    background-color: #a3a3a3;
+    background-color: grey;
 }
 
 input[type=text], input[type=number], input[type=email], select {
