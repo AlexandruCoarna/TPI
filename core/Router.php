@@ -2,6 +2,7 @@
 
 namespace Core;
 
+use Core\Response\ViewResponse;
 use Error;
 
 class Router {
@@ -56,7 +57,8 @@ class Router {
         }
 
         if (!key_exists($request->url, $this->routes_[$request->method])) {
-            throw new Error("This route is invalid");
+            new ViewResponse("404");
+            return;
         }
 
         $this->routes_[$request->method][$request->url]($request);
