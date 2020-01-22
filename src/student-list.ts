@@ -4,22 +4,14 @@ import {Student} from "./core/models/Student";
 const getStudents = async (filtered: boolean, criteria: string = '', value: string = '') => {
 
     const url = filtered ? `/api/get-filtered-students?${criteria}=${value}` : "/api/get-students";
-
-    const response = await apiCall(url, {
-        method: "GET"
-    });
+    const response = await apiCall(url, {method: "GET"});
 
     if (!response.ok) {
         return;
     }
 
     const responseBody = response.getBody as { data: Student[] };
-
-    if (responseBody.data.length) {
-        renderStudentTable(responseBody.data)
-    } else {
-        renderEmptyStudents(true);
-    }
+    responseBody.data.length ? renderStudentTable(responseBody.data) : renderEmptyStudents(true);
 };
 
 const renderStudentTable = (students: Student[]) => {
@@ -43,7 +35,9 @@ const renderStudentTable = (students: Student[]) => {
                 <td>${student.email}</td>
                 <td>${student.personal_id_number}</td>
                 <td>
-                    <button onclick="deleteStudent(${student.personal_id_number});">Delete</button>
+                    <button onclick="deleteStudent(${student.personal_id_number});">
+                        Delete
+                    </button>
                 </td>
              </tr>
         `;
