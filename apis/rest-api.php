@@ -1,9 +1,12 @@
 <?php
 
 use Core\{Container, Request, Response\JsonResponse, Router};
+use Services\Validator\FormValidator;
 
 Router::post("/api/add-student", function (Request $request) {
-    /* @var $conn PDO */
+    /* @var $conn PDO
+     * @var $validator FormValidator
+     */
 
     $student = $request->body;
 
@@ -11,40 +14,36 @@ Router::post("/api/add-student", function (Request $request) {
         $student[$key] = htmlspecialchars($value, ENT_NOQUOTES);
     }
 
-    $conn = Container::get("database")->getConnection();
+    $validator = Container::get("formValidator");
 
-    $stm = $conn->prepare(
-        "SELECT * FROM student WHERE email = ? OR phone_number = ? OR personal_id_number = ? limit 1"
+    $validator->validate("first_name", $student["first_name"], [$validator->requiredValidator()]);
+    $validator->validate("last_name", $student["last_name"], [$validator->requiredValidator()]);
+    $validator->validate("phone_number", $student["phone_number"], [$validator->requiredValidator(), $validator->phoneNumberValidator()]);
+    $validator->validate("email", $student["email"], [$validator->requiredValidator(), $validator->emailValidator()]);
+    $validator->validate("personal_id_number", $student["personal_id_number"], [$validator->requiredValidator(), $validator->numberValidator()]);
+
+    $validator->checkControlAlreadyExists(
+        "student",
+        [
+            "email",
+            "phone_number",
+            "personal_id_number"
+        ],
+        [
+            $student["email"],
+            $student["phone_number"],
+            $student["personal_id_number"]
+        ]
     );
 
-    $stm->execute([
-        $student["email"],
-        $student["phone_number"],
-        $student["personal_id_number"]
-    ]);
-
-    $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-
-    if (count($result)) {
-        $message = '';
-
-        if ($result[0]["phone_number"] === $student["phone_number"]) {
-            $message .= "This phone number is already used <br>";
-        }
-
-        if ($result[0]["email"] === $student["email"]) {
-            $message .= "This email is already used <br>";
-        }
-
-        if ($result[0]["personal_id_number"] === $student["personal_id_number"]) {
-            $message .= "This personal id number is already used <br>";
-        }
-
+    if (count($validator->getErrors())) {
         return new JsonResponse([
-            "message" => $message,
-            "ok" => false
+            "data" => $validator->getErrors()
         ], 400);
     }
+
+
+    $conn = Container::get("database")->getConnection();
 
     $stm = $conn->prepare(
         "INSERT INTO student (first_name,last_name,phone_number,email,personal_id_number) VALUES (?,?,?,?,?)"
@@ -59,7 +58,6 @@ Router::post("/api/add-student", function (Request $request) {
     ]);
 
     $response = [
-        "ok" => true,
         "message" => "Successfully added!"
     ];
 
@@ -75,7 +73,6 @@ Router::get("/api/get-students", function () {
     $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
     $response = [
-        "ok" => true,
         "data" => $result
     ];
 
@@ -84,6 +81,10 @@ Router::get("/api/get-students", function () {
 
 Router::get("/api/get-filtered-students", function (Request $request) {
     /* @var $conn PDO */
+
+    if (!count($request->queryParams)) {
+        throw  new Error("No criteria set");
+    }
 
     $criteria = array_key_first($request->queryParams);
 
@@ -94,11 +95,7 @@ Router::get("/api/get-filtered-students", function (Request $request) {
         "email",
         "personal_id_number"
     ])) {
-        $response = [
-            "ok" => false,
-            "message" => "Invalid criteria!"
-        ];
-        return new JsonResponse($response, 400);
+        throw new Error("Invalid criteria");
     }
 
     $value = $request->queryParams[$criteria];
@@ -114,15 +111,15 @@ Router::get("/api/get-filtered-students", function (Request $request) {
 
     $stm->execute();
     $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+
     $response = [
-        "ok" => true,
         "data" => $result
     ];
 
     return new JsonResponse($response);
 });
 
-Router::post("/api/delete-student", function (Request $request) {
+Router::delete("/api/delete-student", function (Request $request) {
     /* @var $conn PDO */
 
     $pid = $request->body["pid"];
@@ -132,7 +129,6 @@ Router::post("/api/delete-student", function (Request $request) {
     $stm->execute([$pid]);
 
     $response = [
-        "ok" => true,
         "message" => "Successfully deleted student"
     ];
 

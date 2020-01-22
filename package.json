@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack-cli"
+    "build": "npm run build-js && npm run build-php",
+    "build-php": "composer dump-autoload -o",
+    "build-js": "webpack-cli",
+    "install-modules": "npm install && composer install",
+    "init": "npm run install-modules && npm run build && echo 'Visit http://localhost:8000 to open the project'"
   },
   "repository": {
     "type": "git",

@@ -4,4 +4,4 @@ require_once '../core/util.php';
 
 use Core\{Kernel};
 
-new Kernel();
+new Kernel(true);

@@ -14,6 +14,7 @@ class ViewResponse {
 
         extract($args);
 
+        header("Content-Type: text/html");
         return require_once $fullPath;
     }
 }

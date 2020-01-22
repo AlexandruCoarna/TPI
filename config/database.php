@@ -8,5 +8,5 @@ $connections = [
         'database' => 'tpi',
         'username' => 'root',
         'password' => 'root'
-    ],
+    ]
 ];

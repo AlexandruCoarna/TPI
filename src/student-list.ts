@@ -93,7 +93,7 @@ criteriaInput.onchange = async () => {
 const deleteStudent = async (studentPid: number) => {
     if (confirm(`Are you sure you want to delete the student with Personal Number Id: ${studentPid}?`)) {
         const response = await apiCall(`/api/delete-student`, {
-            method: "POST",
+            method: "DELETE",
             body: JSON.stringify({pid: studentPid})
         });
 

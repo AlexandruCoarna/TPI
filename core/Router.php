@@ -7,7 +7,8 @@ use Error;
 class Router {
     private static array $routes = [
         "GET" => [],
-        "POST" => []
+        "POST" => [],
+        "DELETE" => []
     ];
     private static ?Router $instance = null;
     private array $routes_;
@@ -44,7 +45,12 @@ class Router {
         self::$routes["POST"][$url] = $method;
     }
 
-    public function handle($request): void {
+    public static function delete($url, $method): void {
+        self::checkRouteExists($url, "DELETE");
+        self::$routes["DELETE"][$url] = $method;
+    }
+
+    public function handle(Request $request): void {
         if (!key_exists($request->method, $this->routes_)) {
             throw new Error("'{$request->method}' method is not supported");
         }

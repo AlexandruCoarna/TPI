@@ -7,7 +7,10 @@ use Error;
 use Exception;
 
 class Kernel {
-    public function __construct() {
+    private string $debug;
+
+    public function __construct(bool $debug) {
+        $this->debug = $debug;
         $this->run();
     }
 
@@ -18,11 +21,17 @@ class Kernel {
             Router::init()->handle(new Request());
             return 0;
         } catch (Exception | Error $exception) {
-            return new JsonResponse([
-                "ok" => false,
-                "message" => $exception->getMessage(),
-                "stack" => $exception->getTrace()
-            ], 400);
+            if ($this->debug) {
+                return new JsonResponse([
+                    "message" => $exception->getMessage(),
+                    "stack" => $exception->getTrace()
+                ], 400);
+            } else {
+                return new JsonResponse([
+                    "message" => $exception->getMessage(),
+                ], 400);
+            }
+
         }
     }
 }
