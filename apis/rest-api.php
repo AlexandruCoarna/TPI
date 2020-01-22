@@ -5,7 +5,7 @@ use Services\Validator\FormValidator;
 
 Router::post("/api/add-student", function (Request $request) {
     /* @var $conn PDO
-     * @var $validator FormValidator
+     * @var $formValidator FormValidator
      */
 
     $student = $request->body;
@@ -14,15 +14,15 @@ Router::post("/api/add-student", function (Request $request) {
         $student[$key] = htmlspecialchars($value, ENT_NOQUOTES);
     }
 
-    $validator = Container::get("formValidator");
+    $formValidator = Container::get("formValidator");
 
-    $validator->validate("first_name", $student["first_name"], [$validator->requiredValidator()]);
-    $validator->validate("last_name", $student["last_name"], [$validator->requiredValidator()]);
-    $validator->validate("phone_number", $student["phone_number"], [$validator->requiredValidator(), $validator->phoneNumberValidator()]);
-    $validator->validate("email", $student["email"], [$validator->requiredValidator(), $validator->emailValidator()]);
-    $validator->validate("personal_id_number", $student["personal_id_number"], [$validator->requiredValidator(), $validator->numberValidator()]);
+    $formValidator->validate("first_name", $student["first_name"], [$formValidator->required()]);
+    $formValidator->validate("last_name", $student["last_name"], [$formValidator->required()]);
+    $formValidator->validate("phone_number", $student["phone_number"], [$formValidator->required(), $formValidator->phoneNumber()]);
+    $formValidator->validate("email", $student["email"], [$formValidator->required(), $formValidator->email()]);
+    $formValidator->validate("personal_id_number", $student["personal_id_number"], [$formValidator->required(), $formValidator->number()]);
 
-    $validator->checkControlAlreadyExists(
+    $formValidator->checkControlAlreadyExists(
         "student",
         [
             "email",
@@ -36,12 +36,11 @@ Router::post("/api/add-student", function (Request $request) {
         ]
     );
 
-    if (count($validator->getErrors())) {
+    if (count($formValidator->getErrors())) {
         return new JsonResponse([
-            "data" => $validator->getErrors()
+            "data" => $formValidator->getErrors()
         ], 400);
     }
-
 
     $conn = Container::get("database")->getConnection();
 

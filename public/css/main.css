@@ -1,13 +1,12 @@
 #student-list {
     border-collapse: collapse;
-    border-spacing: 0;
     width: 100%;
     border: 1px solid #ddd;
 }
 
 #student-list th, td {
     text-align: left;
-    padding: 8px;
+    padding: 7px;
 }
 
 #student-list tr:nth-child(even) {
@@ -56,7 +55,7 @@ input[type=text], input[type=number], input[type=email], select {
     margin: 5px auto;
     border-radius: 5px;
     background-color: #f2f2f2;
-    padding: 20px;
+    padding: 15px;
 }
 
 #add-student input {
@@ -83,6 +82,17 @@ input[type=text], input[type=number], input[type=email], select {
 .main {
     margin: 15px auto;
     width: 75%;
+}
+
+.center-text {
+    position: relative;
+    margin: auto;
+    width: 220px;
+    text-align: center;
+    font-size: 18px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 750px) {

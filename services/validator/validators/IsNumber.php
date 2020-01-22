@@ -7,7 +7,7 @@ class IsNumber implements ValidatorInterface {
         $pattern = "/^[0-9]+$/";
 
         if (!preg_match($pattern, $value)) {
-            return "'$value' is not a valid number.";
+            return "' $value ' is not a valid number.";
         }
 
         return true;

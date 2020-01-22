@@ -7,7 +7,7 @@ class Email implements ValidatorInterface {
         $pattern = "/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/";
 
         if (!preg_match($pattern, $value)) {
-            return "'$value' is not a valid email.";
+            return "' $value ' is not a valid email.";
         }
 
         return true;

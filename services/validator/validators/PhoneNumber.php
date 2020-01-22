@@ -7,7 +7,7 @@ class PhoneNumber implements ValidatorInterface {
         $pattern = "/^\d{10}$/";
 
         if (!preg_match($pattern, $value)) {
-            return "'$value' is not a valid phone number.";
+            return "' $value ' is not a valid phone number.";
         }
 
         return true;

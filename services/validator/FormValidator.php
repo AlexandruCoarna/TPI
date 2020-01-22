@@ -47,14 +47,16 @@ class FormValidator {
         $conn = Container::get("database")->getConnection();
         $stm = $conn->prepare($sql);
         $stm->execute($values);
-        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stm->fetch(PDO::FETCH_NAMED);
 
-        if (count($result)) {
-            foreach ($columns as $key => $value) {
-                if ($result[0][$value] === $values[$key]) {
-                    $controlName = underscoreToNormal($controls[$key]);
-                    $this->errors[$controls[$key]][] = "This $controlName is already used!";
-                }
+        if (!$result) {
+            return;
+        }
+
+        foreach ($columns as $key => $value) {
+            if ($result[$value] === $values[$key]) {
+                $controlName = underscoreToNormal($controls[$key]);
+                $this->errors[$controls[$key]][] = "This $controlName is already used!";
             }
         }
     }

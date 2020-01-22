@@ -2,9 +2,9 @@
 <? require_once "snippets/navbar.view.php" ?>
 
 <div class="main">
-    <p>
+    <div class="center-text">
         Filter Students
-    </p>
+    </div>
     <form id="filter-students" onsubmit="event.preventDefault();">
         <label for="criteria">Criteria</label>
         <select name="criteria" id="criteria">
@@ -18,6 +18,7 @@
         <label for="value">Value</label>
         <input type="text" name="value" id="value" placeholder="Value">
     </form>
+    <hr>
 
     <br>
 

@@ -5,19 +5,19 @@ namespace Services\Validator;
 use Services\Validator\Validators\{Email, IsNumber, PhoneNumber, Required};
 
 trait ValidatorList {
-    public function phoneNumberValidator() {
+    public function phoneNumber() {
         return new PhoneNumber();
     }
 
-    public function emailValidator() {
+    public function email() {
         return new Email();
     }
 
-    public function requiredValidator() {
+    public function required() {
         return new Required();
     }
 
-    public function numberValidator() {
+    public function number() {
         return new IsNumber();
     }
 }
