@@ -6,7 +6,7 @@ export class NumberValidator implements ValidatorInterface {
         const pattern = /^[0-9]+$/;
 
         if (!v.match(pattern)) {
-            return "Personal Id Number must contain only digits";
+            return "This field must contain only digits";
         }
 
         return true;

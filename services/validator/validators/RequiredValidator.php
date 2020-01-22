@@ -2,10 +2,10 @@
 
 namespace Services\Validator\Validators;
 
-class Required implements ValidatorInterface {
+class RequiredValidator implements ValidatorInterface {
     public function validate($value) {
         if (!$value) {
-            return "You inserted an empty value.";
+            return "This field is required";
         }
 
         return true;

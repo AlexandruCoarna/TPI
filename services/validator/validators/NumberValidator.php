@@ -2,12 +2,12 @@
 
 namespace Services\Validator\Validators;
 
-class PhoneNumber implements ValidatorInterface {
+class NumberValidator implements ValidatorInterface {
     public function validate($value) {
-        $pattern = "/^\d{10}$/";
+        $pattern = "/^[0-9]+$/";
 
         if (!preg_match($pattern, $value)) {
-            return "' $value ' is not a valid phone number.";
+            return "This field must contain only digits";
         }
 
         return true;

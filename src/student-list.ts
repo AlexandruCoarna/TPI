@@ -4,7 +4,12 @@ import {Student} from "./core/models/Student";
 const getStudents = async (filtered: boolean, criteria: string = '', value: string = '') => {
 
     const url = filtered ? `/api/get-filtered-students?${criteria}=${value}` : "/api/get-students";
-    const response = await apiCall(url, {method: "GET"});
+    const response = await apiCall(url, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
 
     if (!response.ok) {
         return;
@@ -88,7 +93,10 @@ const deleteStudent = async (studentPid: number) => {
     if (confirm(`Are you sure you want to delete the student with Personal Number Id: ${studentPid}?`)) {
         const response = await apiCall(`/api/delete-student`, {
             method: "DELETE",
-            body: JSON.stringify({pid: studentPid})
+            body: JSON.stringify({pid: studentPid}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         });
 
         if (!response.ok) {
@@ -101,7 +109,6 @@ const deleteStudent = async (studentPid: number) => {
     }
 };
 
-// noinspection TypeScriptUnresolvedVariable
-window.deleteStudent = deleteStudent;
+(<any>window).deleteStudent = deleteStudent;
 
 getStudents(false).then();

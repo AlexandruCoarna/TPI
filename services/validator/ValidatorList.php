@@ -2,22 +2,22 @@
 
 namespace Services\Validator;
 
-use Services\Validator\Validators\{Email, IsNumber, PhoneNumber, Required};
+use Services\Validator\Validators\{EmailValidator, NumberValidator, PhoneNumberValidator, RequiredValidator};
 
 trait ValidatorList {
     public function phoneNumber() {
-        return new PhoneNumber();
+        return new PhoneNumberValidator();
     }
 
     public function email() {
-        return new Email();
+        return new EmailValidator();
     }
 
     public function required() {
-        return new Required();
+        return new RequiredValidator();
     }
 
     public function number() {
-        return new IsNumber();
+        return new NumberValidator();
     }
 }
