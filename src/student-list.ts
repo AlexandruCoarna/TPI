@@ -107,7 +107,7 @@ const deleteStudent = async (studentPid: number) => {
     }
 };
 
-// @ts-ignore
+// noinspection TypeScriptUnresolvedVariable
 window.deleteStudent = deleteStudent;
 
 getStudents(false).then();
