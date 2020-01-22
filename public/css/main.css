@@ -14,11 +14,11 @@
 }
 
 #student-list tr:nth-child(even) {
-    background-color: #8bd898;
+    background-color: #a5d8b2;
 }
 
 #student-list tr:first-child {
-    background-color: grey;
+    background-color: darkgray;
 }
 
 input[type=text], input[type=number], input[type=email], select {
