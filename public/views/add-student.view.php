@@ -1,10 +1,14 @@
 <? require_once "snippets/start.view.php" ?>
 <? require_once "snippets/navbar.view.php" ?>
 
-<div class="main">
-    <div class="center-text">
-        Add Students
+<div class="sub-menu-wrapper">
+    <div class="sub-menu">
+        <div class="center-text font-23">
+            Add Students
+        </div>
     </div>
+</div>
+<div class="main">
     <div id="add-student-wrapper">
         <form id="add-student">
             <label for="fname">First Name *</label>
@@ -24,9 +28,6 @@
 
             <input type="submit" value="Add Student">
         </form>
-        <div class="center-text">
-            Fields with * are required!
-        </div>
     </div>
 </div>
 <script src="../bundles/add-student.bundle.js"></script>

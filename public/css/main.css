@@ -1,24 +1,44 @@
+body {
+    background: #a9a9a9;
+    margin: 0;
+    padding: 0;
+    color: #ead9c3;
+    font-size: 17px;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif
+}
+
 #student-list {
     border-collapse: collapse;
     width: 100%;
-    border: 1px solid #ddd;
+    box-shadow: 0 0 8px 4px black;
 }
+
 
 #student-list th, td {
     text-align: left;
-    padding: 7px;
+    padding: 15px 7px 15px 7px;
 }
 
-#student-list tr:nth-child(odd) {
-    background-color: #f2f2f2;
+#student-list tr {
+    background: #595959;
+    box-shadow: 0 -1px 2px 1px #9e9e9e;
 }
 
-#student-list tr:nth-child(even) {
-    background-color: #a5d8b2;
+#student-list-wrapper {
+    width: 100%;
 }
 
-#student-list tr:first-child {
-    background-color: darkgray;
+.delete-button {
+    border-radius: 5px;
+    background-color: #f44336;
+    border: none;
+    color: inherit;
+    padding: 7px 20px 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
 }
 
 input[type=text], input[type=number], input[type=email], select {
@@ -26,40 +46,27 @@ input[type=text], input[type=number], input[type=email], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    background: #c7c7c7;
 }
 
 #filter-students {
     display: flex;
-    flex-flow: row wrap;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
-#filter-students label {
-    margin: 5px 10px 5px 0;
-}
-
-#filter-students input {
-    min-width: 150px;
-    vertical-align: middle;
-    margin: 5px 10px 5px 0;
+#filter-students input, select {
+    width: 45%;
     padding: 10px;
-    flex: 1;
-}
-
-#filter-students select {
-    min-width: 150px;
-    vertical-align: middle;
-    margin: 5px 10px 5px 0;
-    padding: 10px;
-    flex: 1;
 }
 
 #add-student-wrapper {
-    width: 80%;
+    width: 60%;
     margin: 5px auto;
     border-radius: 5px;
-    background-color: #f2f2f2;
     padding: 15px;
+    background: #595959;
+    box-shadow: 0 0 11px 3px black;
 }
 
 #add-student input {
@@ -70,17 +77,20 @@ input[type=text], input[type=number], input[type=email], select {
 
 #add-student input[type=submit] {
     width: 100%;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #bf9d4f;
+    color: #060606;
+    font-size: 17px;
     padding: 14px 20px;
     margin: 8px auto;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: bold;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
-#add-student input[type=submit]:hover {
-    background-color: #45a049;
+#add-student label {
+    margin-left: 5px;
 }
 
 .main {
@@ -99,23 +109,135 @@ input[type=text], input[type=number], input[type=email], select {
     font-weight: bold;
 }
 
-@media screen and (max-width: 750px) {
+.font-23 {
+    font-size: 23px;
+}
+
+.sub-menu-wrapper {
+    width: 100%;
+    padding: 20px 0 30px 0;
+    background: #383838;
+    margin: auto auto 30px auto;
+    box-shadow: 0 7px 15px 3px black;
+}
+
+.sub-menu {
+    width: 75%;
+    margin: auto;
+}
+
+@media screen and (max-width: 1040px) {
     .main {
-        width: 100%;
-        padding: 0;
+        width: 97%;
+        padding: 10px;
     }
 
+    #student-list-wrapper {
+        overflow-x: scroll;
+    }
+}
+
+/*NAVBAR*/
+.active {
+    background: #383838;
+}
+
+.nav-wrapper {
+    width: 100%;
+    background-color: #333;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    width: 75%;
+    margin: auto;
+    position: relative;
+}
+
+.title, .toggle {
+    display: none;
+}
+
+
+.nav-items {
+    display: flex;
+}
+
+.item a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 20px 20px 20px 20px;
+}
+
+.item a:hover {
+    text-decoration: underline;
+}
+
+.toggle a:hover {
+    text-decoration: none;
+}
+
+.title a:hover {
+    text-decoration: none;
+    cursor: context-menu;
+}
+
+.selector-top {
+    border-top: 5px solid grey;
+}
+
+@media screen and (max-width: 750px) {
     #add-student-wrapper {
-        width: 99%;
-        padding: 5px;
+        width: 90%;
+        padding: 7px 13px 7px 13px;
     }
 
-    #filter-students input {
+    #filter-students input, select {
         margin: 10px 0;
+        width: 100%;
     }
 
-    #filter-students {
+
+    .nav {
+        width: 100%;
         flex-direction: column;
-        align-items: stretch;
+    }
+
+    .nav-items {
+        display: none;
+        flex-direction: column;
+    }
+
+    .item a {
+        width: 100%;
+        text-align: center;
+        padding: 20px 0 20px 0;
+    }
+
+    .title a {
+        text-align: left;
+    }
+
+    .toggle {
+        display: initial;
+        cursor: pointer;
+        align-self: flex-end;
+        right: 15px;
+        position: absolute;
+    }
+
+    .title {
+        display: initial;
+        padding-left: 25px;
+    }
+
+    .toggle-show {
+        display: flex;
+    }
+
+    .selector-top {
+        border: none;
     }
 }

@@ -24,8 +24,8 @@ export class FormValidator extends ValidatorList {
 
     private static addErr(control: FormControl, errMsg: string) {
         const element = `
-            <div class="${control.nativeElement.name}_err_element" style="color: red; padding: 0 5px 5px 5px;"> 
-                ${errMsg} 
+            <div class="${control.nativeElement.name}_err_element" style="color: #ff4c4c; padding: 0 5px 5px 5px;"> 
+               <small>${errMsg}</small> 
             </div> `;
 
         control.nativeElement.style.border = "1px solid red";

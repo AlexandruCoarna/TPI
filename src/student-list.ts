@@ -40,7 +40,7 @@ const renderStudentTable = (students: Student[]) => {
                 <td>${student.email}</td>
                 <td>${student.personal_id_number}</td>
                 <td>
-                    <button onclick="deleteStudent(${student.personal_id_number});">
+                    <button class="delete-button" onclick="deleteStudent(${student.personal_id_number});">
                         Delete
                     </button>
                 </td>

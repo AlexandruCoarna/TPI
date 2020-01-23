@@ -16,7 +16,7 @@
     margin-bottom: 30px;
 
     background: rgba(0, 0, 0, 0.76);
-    color: #ffffff;
+    color: black;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 1rem;
 }
@@ -32,7 +32,7 @@
 }
 
 #vanilla-toast.success {
-    background: rgba(92, 184, 92, 0.76);
+    background: #1ad916;
 }
 
 #vanilla-toast.info {
