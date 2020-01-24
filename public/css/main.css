@@ -107,7 +107,6 @@ input[type=text], input[type=number], input[type=email], select {
     margin-bottom: 12px;
     width: 100%;
     display: inline-block;
-    border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }
@@ -238,7 +237,7 @@ input[type=text], input[type=number], input[type=email], select {
     padding: 0 5px 5px 5px;
 }
 
-.err-highlight {
+.error-highlight {
     border: 2px solid red;
 }
 
