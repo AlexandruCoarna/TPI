@@ -3,7 +3,7 @@
     "module": "commonjs",
     "target": "esnext",
     "removeComments": true,
-    "sourceMap": true
+    "sourceMap": false
   },
   "exclude": [
     "./node_modules",

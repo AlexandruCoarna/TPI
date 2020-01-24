@@ -6,7 +6,7 @@ module.exports = {
         'student-list': './src/student-list',
         'navbar': './src/navbar'
     },
-    mode: 'development',
+    mode: 'production',
     module: {
         rules: [
             {
