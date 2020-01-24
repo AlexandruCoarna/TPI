@@ -30,7 +30,7 @@ export class FormValidator extends ValidatorList {
 
         control.nativeElement.style.border = "1px solid red";
 
-        control.nativeElement.insertAdjacentHTML("afterend", element);
+        control.nativeElement.insertAdjacentHTML("beforebegin", element);
     }
 
     public validate(control: FormControl, validators: ValidatorInterface[]) {

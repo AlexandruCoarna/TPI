@@ -59,7 +59,7 @@ const renderEmptyStudents = (show: boolean) => {
     if (show) {
         emptyPlaceholder.style.display = "block";
         studentTable.style.display = 'none';
-        emptyPlaceholder.innerHTML = "<h3>There are no registered students</h3>";
+        emptyPlaceholder.innerHTML = "<br><br><br><h1>There are no registered students</h1>";
     } else {
         studentTable.style.display = 'table';
         emptyPlaceholder.style.display = "none";

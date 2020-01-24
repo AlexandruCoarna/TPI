@@ -3,9 +3,10 @@ const path = require("path");
 module.exports = {
     entry: {
         'add-student': './src/add-student',
-        'student-list': './src/student-list'
+        'student-list': './src/student-list',
+        'navbar': './src/navbar'
     },
-    mode: 'production',
+    mode: 'development',
     module: {
         rules: [
             {

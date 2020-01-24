@@ -42,10 +42,6 @@ body {
 }
 
 input[type=text], input[type=number], input[type=email], select {
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
     background: #c7c7c7;
 }
 
@@ -55,10 +51,6 @@ input[type=text], input[type=number], input[type=email], select {
     justify-content: space-evenly;
 }
 
-#filter-students input, select {
-    width: 45%;
-    padding: 10px;
-}
 
 #add-student-wrapper {
     width: 60%;
@@ -67,12 +59,6 @@ input[type=text], input[type=number], input[type=email], select {
     padding: 15px;
     background: #595959;
     box-shadow: 0 0 11px 3px black;
-}
-
-#add-student input {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
 }
 
 #add-student input[type=submit] {
@@ -87,10 +73,6 @@ input[type=text], input[type=number], input[type=email], select {
     cursor: pointer;
     font-weight: bold;
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-}
-
-#add-student label {
-    margin-left: 5px;
 }
 
 .main {
@@ -128,13 +110,42 @@ input[type=text], input[type=number], input[type=email], select {
 
 @media screen and (max-width: 1040px) {
     .main {
-        width: 97%;
-        padding: 10px;
+        width: 100%;
     }
 
     #student-list-wrapper {
-        overflow-x: scroll;
+        overflow-x: auto;
     }
+}
+
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-group label {
+    margin-bottom: 7px;
+    margin-left: 5px;
+}
+
+.form-group input, select {
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    width: 100%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group select {
+    padding: 14px 20px;
+}
+
+.w-45per {
+    width: 45%;
 }
 
 /*NAVBAR*/
@@ -189,19 +200,22 @@ input[type=text], input[type=number], input[type=email], select {
 }
 
 @media screen and (max-width: 750px) {
+    .w-45per {
+        width: 100%;
+    }
+
     #add-student-wrapper {
         width: 90%;
         padding: 7px 13px 7px 13px;
     }
 
-    #filter-students input, select {
-        margin: 10px 0;
-        width: 100%;
+    #student-list-wrapper {
+        padding: 10px;
+        width: 95%;
     }
 
-
     .nav {
-        width: 100%;
+        width: 96%;
         flex-direction: column;
     }
 
@@ -239,5 +253,9 @@ input[type=text], input[type=number], input[type=email], select {
 
     .selector-top {
         border: none;
+    }
+
+    .active {
+        background: none;
     }
 }

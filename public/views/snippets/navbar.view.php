@@ -11,35 +11,11 @@
         </div>
         <div class="nav-items">
             <div class="item">
-                <a href="/" customUrl="true">Student List</a>
+                <a href="/" customUrl>Student List</a>
             </div>
             <div class="item">
-                <a href="/add-student" customUrl="true">Add Student</a>
+                <a href="/add-student" customUrl>Add Student</a>
             </div>
         </div>
-
     </nav>
 </div>
-
-<script>
-    const links = document.querySelectorAll("[customUrl=true]");
-
-    links.forEach(link => {
-        if (link.href.split("?")[0] === window.location.href.split("?")[0]) {
-            link.className += "active selector-top";
-        } else {
-            link.className = null;
-        }
-    });
-
-    function classToggle() {
-
-    }
-
-    const navItems = document.querySelectorAll('.nav-items');
-
-    document.querySelector('#toggle-icon').onclick = () => {
-        navItems.forEach(navItem => navItem.classList.toggle('toggle-show'));
-    }
-
-</script>
