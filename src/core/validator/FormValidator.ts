@@ -15,8 +15,9 @@ export class FormValidator extends ValidatorList {
     }
 
     private static clearErr(control: FormControl) {
-        control.nativeElement.style.border = control.initialElementState.style.border;
-        const errElements = document.querySelectorAll(`.${control.nativeElement.name}_err_element`);
+        control.nativeElement.classList.remove("error-highlight");
+        const errElements = document.querySelectorAll(`.${control.nativeElement.name}_err_element_234297`);
+
         if (errElements.length) {
             errElements.forEach(errElement => errElement.parentNode.removeChild(errElement))
         }
@@ -24,12 +25,11 @@ export class FormValidator extends ValidatorList {
 
     private static addErr(control: FormControl, errMsg: string) {
         const element = `
-            <div class="${control.nativeElement.name}_err_element" style="color: #ff4c4c; padding: 0 5px 5px 5px;"> 
+            <div class="${control.nativeElement.name}_err_element_234297 error-msg"> 
                <small>${errMsg}</small> 
             </div> `;
 
-        control.nativeElement.style.border = "1px solid red";
-
+        control.nativeElement.classList.add("error-highlight");
         control.nativeElement.insertAdjacentHTML("beforebegin", element);
     }
 

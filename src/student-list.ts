@@ -53,17 +53,13 @@ const renderStudentTable = (students: Student[]) => {
 const renderEmptyStudents = (show: boolean) => {
     let emptyPlaceholder: HTMLElement = document.querySelector("#student-empty-placeholder");
     let studentTable: HTMLElement = document.querySelector("#student-list");
-    emptyPlaceholder.style.width = "100%";
-    emptyPlaceholder.style.textAlign = "center";
 
     if (show) {
         emptyPlaceholder.style.display = "block";
         studentTable.style.display = 'none';
-        emptyPlaceholder.innerHTML = "<br><br><br><h1>There are no registered students</h1>";
     } else {
         studentTable.style.display = 'table';
         emptyPlaceholder.style.display = "none";
-        emptyPlaceholder.innerHTML = "";
     }
 };
 

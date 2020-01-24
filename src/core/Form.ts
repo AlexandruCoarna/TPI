@@ -32,7 +32,6 @@ export class Form {
 
             this.controls[input.name] = new FormControl;
             this.controls[input.name]["nativeElement"] = input;
-            this.controls[input.name]["initialElementState"] = input.cloneNode(true) as HTMLInputElement;
         }
     }
 }

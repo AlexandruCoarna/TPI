@@ -41,6 +41,24 @@ body {
     cursor: pointer;
 }
 
+.error-msg {
+    color: #ff4c4c;
+    padding: 0 5px 5px 5px;
+}
+
+.err-highlight {
+    border: 2px solid red;
+}
+
+#student-empty-placeholder {
+    width: 100%;
+    text-align: center;
+}
+
+#student-empty-placeholder h2 {
+    margin-top: 15px;
+}
+
 input[type=text], input[type=number], input[type=email], select {
     background: #c7c7c7;
 }

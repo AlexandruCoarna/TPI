@@ -42,7 +42,9 @@
             <tr id="student-entries-placeholder"></tr>
             </tbody>
         </table>
-        <div id="student-empty-placeholder"></div>
+        <div id="student-empty-placeholder">
+            <h2>There are no registered students</h2>
+        </div>
     </div>
 </div>
 <? require_once "snippets/end.view.php" ?>
