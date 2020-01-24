@@ -22,7 +22,6 @@ const getStudents = async (filtered: boolean, criteria: string = '', value: stri
 const renderStudentTable = (students: Student[]) => {
     renderEmptyStudents(false);
     let entriesPlaceholder: HTMLElement = document.querySelector("#student-entries-placeholder");
-    entriesPlaceholder.style.display = 'none';
     let newHtml = '';
     const targets = document.querySelectorAll('tr[student-auto-inserted]');
 
