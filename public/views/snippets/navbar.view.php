@@ -1,13 +1,13 @@
 <div class="nav-wrapper">
     <nav class="nav">
-        <div class="item title">
-            <a href="javascript:void(0);">
+        <div class="item nav-title">
+            <span>
                 <? /** @var string $title */ ?>
                 <? echo $title ?>
-            </a>
+            </span>
         </div>
         <div class="item toggle">
-            <a href="javascript:void(0);" id="toggle-icon"><i class="fa fa-bars"></i></a>
+            <span id="toggle-icon"><i class="fa fa-bars"></i></span>
         </div>
         <div class="nav-items">
             <div class="item">

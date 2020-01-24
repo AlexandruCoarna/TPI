@@ -54,11 +54,11 @@ const renderEmptyStudents = (show: boolean) => {
     let studentTable: HTMLElement = document.querySelector("#student-list");
 
     if (show) {
-        emptyPlaceholder.style.display = "block";
         studentTable.style.display = 'none';
+        emptyPlaceholder.style.display = "block";
     } else {
-        studentTable.style.display = 'table';
         emptyPlaceholder.style.display = "none";
+        studentTable.style.display = 'table';
     }
 };
 

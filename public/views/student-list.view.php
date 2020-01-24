@@ -28,7 +28,7 @@
 
 <div class="main">
     <div id="student-list-wrapper">
-        <table id="student-list">
+        <table id="student-list" style=" display: none">
             <tbody>
             <tr>
                 <th>No.</th>
