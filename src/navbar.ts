@@ -18,7 +18,14 @@ links.forEach(link => {
 
 const navItems = document.querySelectorAll('.nav-items');
 const toggleLink: HTMLAnchorElement = document.querySelector('#toggle-icon');
+const icon: HTMLElement = document.querySelector(".fa");
 
 toggleLink.onclick = () => {
     navItems.forEach(navItem => navItem.classList.toggle('toggle-show'));
+
+    if (icon.classList.contains("fa-bars")) {
+        icon.classList.replace("fa-bars", "fa-times");
+    } else {
+        icon.classList.replace("fa-times", "fa-bars");
+    }
 };
