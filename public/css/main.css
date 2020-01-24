@@ -111,10 +111,6 @@ input[type=text], input[type=number], input[type=email], select {
     box-sizing: border-box;
 }
 
-.form-group select {
-    padding: 14px 20px;
-}
-
 .w-45per {
     width: 45%;
 }
