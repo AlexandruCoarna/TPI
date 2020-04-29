@@ -1,7 +1,8 @@
 <?php
 
-namespace Core\DatabaseDrivers;
+namespace Core\database_drivers;
 
-interface DriverInterface {
+interface DriverInterface
+{
     public static function connect(array $config);
 }

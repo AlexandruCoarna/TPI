@@ -1,6 +1,6 @@
 <?php /** @noinspection PhpIncludeInspection */
 
-namespace Core\Response;
+namespace Core\response;
 
 use Error;
 

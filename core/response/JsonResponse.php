@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Response;
+namespace Core\response;
 
 class JsonResponse {
     public function __construct(array $arr, int $http_response_code = 200) {

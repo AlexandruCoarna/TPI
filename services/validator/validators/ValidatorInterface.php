@@ -1,6 +1,6 @@
 <?php
 
-namespace Services\Validator\Validators;
+namespace Services\validator\validators;
 
 interface ValidatorInterface {
     /* @param $value

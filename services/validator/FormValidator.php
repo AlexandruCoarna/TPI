@@ -1,6 +1,6 @@
 <?php
 
-namespace Services\Validator;
+namespace Services\validator;
 
 use Core\Container;
 use PDO;

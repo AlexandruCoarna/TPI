@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\DatabaseDrivers;
+namespace Core\database_drivers;
 
 use PDO;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Services\Validator;
+namespace Services\validator;
 
-use Services\Validator\Validators\{EmailValidator, NumberValidator, PhoneNumberValidator, RequiredValidator};
+use Services\validator\validators\{EmailValidator, NumberValidator, PhoneNumberValidator, RequiredValidator};
 
 trait ValidatorList {
     public function phoneNumber() {

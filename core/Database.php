@@ -2,7 +2,7 @@
 
 namespace Core;
 
-use Core\DatabaseDrivers\Mysql;
+use Core\database_drivers\Mysql;
 use PDO;
 
 class Database {
