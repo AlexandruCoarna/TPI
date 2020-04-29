@@ -2,19 +2,22 @@
 
 namespace Core;
 
-use Core\Response\JsonResponse;
+use Core\response\JsonResponse;
 use Error;
 use Exception;
 
-class Kernel {
+class Kernel
+{
     private string $debug;
 
-    public function __construct(bool $debug) {
+    public function __construct(bool $debug)
+    {
         $this->debug = $debug;
         $this->run();
     }
 
-    private function run() {
+    private function run()
+    {
         try {
             Container::register("database", new Database());
             Container::init();

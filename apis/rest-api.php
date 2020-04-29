@@ -1,7 +1,7 @@
 <?php
 
-use Core\{Container, Request, Response\JsonResponse, Router};
-use Services\Validator\FormValidator;
+use Core\{Container, Request, response\JsonResponse, Router};
+use Services\validator\FormValidator;
 
 Router::post("/api/add-student", function (Request $request) {
     /* @var $conn PDO

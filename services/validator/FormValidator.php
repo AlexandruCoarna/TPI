@@ -4,16 +4,18 @@ namespace Services\validator;
 
 use Core\Container;
 use PDO;
-use Services\Validator\Validators\{ValidatorInterface};
+use Services\validator\validators\{ValidatorInterface};
 use function Core\underscoreToNormal;
 
-class FormValidator {
+class FormValidator
+{
 
     use ValidatorList;
 
     private array $errors = [];
 
-    public function validate(string $control, $value, array $validators) {
+    public function validate(string $control, $value, array $validators)
+    {
         foreach ($validators as $validator) {
             /* @var $validator ValidatorInterface */
 
@@ -25,7 +27,8 @@ class FormValidator {
         }
     }
 
-    public function checkControlAlreadyExists(string $table, array $columns, array $values, array $controls = []) {
+    public function checkControlAlreadyExists(string $table, array $columns, array $values, array $controls = [])
+    {
         /* @var $conn PDO */
 
         if (!count($controls)) {
@@ -61,7 +64,8 @@ class FormValidator {
         }
     }
 
-    public function getErrors() {
+    public function getErrors()
+    {
         return $this->errors;
     }
 }

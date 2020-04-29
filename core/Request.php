@@ -2,13 +2,15 @@
 
 namespace Core;
 
-class Request {
+class Request
+{
     public string $url;
     public string $method;
     public array $body;
     public array $queryParams;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->url = explode('?', $_SERVER['REQUEST_URI'])[0];
         $this->method = $_SERVER['REQUEST_METHOD'];
         $this->queryParams = $_GET;

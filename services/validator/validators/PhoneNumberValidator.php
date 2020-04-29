@@ -2,8 +2,10 @@
 
 namespace Services\validator\validators;
 
-class PhoneNumberValidator implements ValidatorInterface {
-    public function validate($value) {
+class PhoneNumberValidator implements ValidatorInterface
+{
+    public function validate($value)
+    {
         $pattern = "/^\d{10}$/";
 
         if (!preg_match($pattern, $value)) {

@@ -1,7 +1,7 @@
 <?php
 
 use Core\{Router};
-use Core\Response\ViewResponse;
+use Core\response\ViewResponse;
 
 Router::get("/", function () {
     $title = "Student List";

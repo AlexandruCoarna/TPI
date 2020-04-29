@@ -2,7 +2,8 @@
 
 namespace Services\validator\validators;
 
-interface ValidatorInterface {
+interface ValidatorInterface
+{
     /* @param $value
      * @return boolean | string
      */

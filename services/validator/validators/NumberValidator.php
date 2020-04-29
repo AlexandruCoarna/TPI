@@ -2,8 +2,10 @@
 
 namespace Services\validator\validators;
 
-class NumberValidator implements ValidatorInterface {
-    public function validate($value) {
+class NumberValidator implements ValidatorInterface
+{
+    public function validate($value)
+    {
         $pattern = "/^[0-9]+$/";
 
         if (!preg_match($pattern, $value)) {

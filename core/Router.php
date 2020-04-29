@@ -2,10 +2,11 @@
 
 namespace Core;
 
-use Core\Response\ViewResponse;
+use Core\response\ViewResponse;
 use Error;
 
-class Router {
+class Router
+{
     private static array $routes = [
         "GET" => [],
         "POST" => [],
@@ -14,11 +15,13 @@ class Router {
     private static ?Router $instance = null;
     private array $routes_;
 
-    private function __construct($routes) {
+    private function __construct($routes)
+    {
         $this->routes_ = $routes;
     }
 
-    public static function init(): Router {
+    public static function init(): Router
+    {
         $path = ROOT . "/config/routes.php";
 
         if (!file_exists($path)) {
@@ -30,28 +33,33 @@ class Router {
         return !self::$instance ? self::$instance = new self(self::$routes) : self::$instance;
     }
 
-    public static function get($url, $method): void {
+    public static function get($url, $method): void
+    {
         self::checkRouteExists($url, "GET");
         self::$routes["GET"][$url] = $method;
     }
 
-    private static function checkRouteExists($url, $requestMethod) {
+    private static function checkRouteExists($url, $requestMethod)
+    {
         if (key_exists($url, self::$routes[$requestMethod])) {
             throw new Error("This route '{$url}' is already defined");
         }
     }
 
-    public static function post($url, $method): void {
+    public static function post($url, $method): void
+    {
         self::checkRouteExists($url, "POST");
         self::$routes["POST"][$url] = $method;
     }
 
-    public static function delete($url, $method): void {
+    public static function delete($url, $method): void
+    {
         self::checkRouteExists($url, "DELETE");
         self::$routes["DELETE"][$url] = $method;
     }
 
-    public function handle(Request $request): void {
+    public function handle(Request $request): void
+    {
         if (!key_exists($request->method, $this->routes_)) {
             throw new Error("'{$request->method}' method is not supported");
         }

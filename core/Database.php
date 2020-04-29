@@ -5,18 +5,21 @@ namespace Core;
 use Core\database_drivers\Mysql;
 use PDO;
 
-class Database {
+class Database
+{
     private array $drivers = [
         "mysql" => Mysql::class
     ];
 
     private ?PDO $connection = null;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->makeConnection();
     }
 
-    private function makeConnection() {
+    private function makeConnection()
+    {
         $driver = '';
         $connections = [];
 
@@ -25,7 +28,8 @@ class Database {
         $this->connection = $this->drivers[$driver]::connect($connections[$driver]);
     }
 
-    public function getConnection() {
+    public function getConnection()
+    {
         if (!$this->connection) {
             $this->makeConnection();
             return $this->connection;
@@ -34,7 +38,8 @@ class Database {
         return $this->connection;
     }
 
-    public function closeConnection() {
+    public function closeConnection()
+    {
         $this->connection = null;
     }
 }

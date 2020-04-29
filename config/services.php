@@ -1,6 +1,6 @@
 <?php
 
 use Core\Container;
-use Services\Validator\FormValidator;
+use Services\validator\FormValidator;
 
 Container::register("formValidator", new FormValidator());

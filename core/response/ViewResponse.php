@@ -4,8 +4,10 @@ namespace Core\response;
 
 use Error;
 
-class ViewResponse {
-    public function __construct($path, array $args = [], int $http_response_code = 200) {
+class ViewResponse
+{
+    public function __construct($path, array $args = [], int $http_response_code = 200)
+    {
         $fullPath = ROOT . "/public/views/{$path}.view.php";
 
         if (!file_exists($fullPath)) {

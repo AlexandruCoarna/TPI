@@ -4,7 +4,8 @@ namespace Core;
 
 define("ROOT", $_SERVER['DOCUMENT_ROOT']);
 
-function underscoreToNormal($value) {
+function underscoreToNormal($value)
+{
     $ucFirstArr = [];
     $explodedValue = explode("_", $value);
 
