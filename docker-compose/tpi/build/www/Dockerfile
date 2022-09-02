@@ -3,7 +3,7 @@ RUN docker-php-ext-install pdo pdo_mysql
 RUN apt-get update && apt-get install vim gnupg  -yq
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
 RUN apt-get install nodejs -yq
 
 RUN a2enmod rewrite
