@@ -2,7 +2,7 @@ version: "3.5"
 services:
   www:
     container_name: tpi-www
-    build: ./build/www
+    build: ./build-images/www
     ports:
       - "8000:80"
     volumes:
